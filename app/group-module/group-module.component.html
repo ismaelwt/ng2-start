@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-lg-8">
+        <form #f="ngForm">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-lg-3">
+                        <button class="btn btn-success" (click)="addCompany()">New Company</button>
+                    </div>
+                    <div class="col-lg-3">
+                        <button class="btn btn-default" (click)="editCompany()">Edit Company</button>
+                    </div>
+                    <div class="col-lg-3">
+                        <button class="btn btn-danger" (click)="removeCompany()">Delete Company</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="form-group">
+                        <table class="table table-striped">
+                            <thead>
+                                <th>Name</th>
+                                <th>Index</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let company of companies; let i = index;">
+                                    <td [ngClass]="{'setSelected': selectedCompany && selectedCompany.id === company.id}" (click)="setSelected(company)" >{{company.name}}</td>
+                                    <td>{{i}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<router-outlet></router-outlet>

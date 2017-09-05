@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Company</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class=" col-lg-12">
+                <form #f="ngForm">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input [(ngModel)]="company.name" name="company.name" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label for="email">Phantasy Name:</label>
+                                <input [(ngModel)]="company.phantasyName" name="company.phantasyName" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label for="company.country">Country</label>
+                                <input [(ngModel)]="company.country" name="company.country" type="text" class="form-control" id="company.country">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-success" (click)="save(company)">Register</button>
+                        </div>
+                        <div class="col-lg-10">
+                            <button type="button" class="btn btn-default" (click)="goBack()">back</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

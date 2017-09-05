@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-lg-offset-3 col-lg-8 cls1">
+        <form #f="ngForm" >
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input [(ngModel)]="user.name" name="username" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input [(ngModel)]="user.email" name="email" type="email" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input [(ngModel)]="user.password" name="username" type="password" class="form-control" id="pwd">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <button type="submit" class="btn btn-default" (click)="saveNewUser(user)">Register</button>
+                </div>
+                <div class="col-lg-2">
+                    <button type="button" class="btn btn-default" (click)="goBack()">back</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
