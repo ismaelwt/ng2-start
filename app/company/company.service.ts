@@ -12,50 +12,38 @@ export class CompanyService implements OnInit {
     test: any;
 
 
-    constructor(private http: Http, private optArs:RequestOptionsArgs, private opt:RequestOptions, private headers:Headers) { }
-
-    head = new Headers({
-        'Content-Type': 'application/json'
-    });
+    constructor(private http: Http) { }
 
     ngOnInit() {
 
-    }
-
-
-    private setHeaders(){
-        let options = new RequestOptions();
-        options.withCredentials = true;
-        return options;
     }
 
     save(data: any): Observable<Company> {
 
         return this.http.post(
             this.registerUrl,
-            JSON.stringify(data),
-            this.setHeaders())
+            JSON.stringify(data))
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 
     getAll(): Observable<Company[]> {
 
-        return this.http.get(this.registerUrl, {withCredentials:true})
+        return this.http.get(this.registerUrl)
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
     }
 
     findById(id:string): Observable<Company> {
-        return this.http.get(this.registerUrl + id, this.setHeaders())
+        return this.http.get(this.registerUrl + id)
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 
     }
 
     deleteById(id:string): Observable<Company> {
-        return this.http.delete(this.registerUrl + id, {withCredentials: true})
+        return this.http.delete(this.registerUrl + id)
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
 

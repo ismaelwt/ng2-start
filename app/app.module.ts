@@ -16,7 +16,6 @@ import { RegisterService } from './register/register.service';
 
 import { LoginService } from './login/login.service';
 import { LoggedInGuard } from './helper/LoggedInGuard';
-import { CustomBrowserXhr } from './helper/CustomXhr';
 
 import { CompanyModule } from './company/company.module';
 import { GroupModuleModule } from './group-module/group-module.module';
@@ -52,6 +51,6 @@ import 'rxjs/add/observable/throw';
     { provide: XHRBackend, useClass: ExtendedXHRBackend },
     LoggedInGuard
   ],
-  bootstrap: [AppComponent, [{ provide: BrowserXhr, useClass: CustomBrowserXhr }]]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

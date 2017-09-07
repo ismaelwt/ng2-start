@@ -14,7 +14,6 @@ export class ExtendedXHRBackend extends XHRBackend {
     let token = localStorage.getItem('token');
     request.headers.set('x-access-token', `${token}`);
     request.headers.set('Content-Type', 'application/json');
-    request.withCredentials = true;
     let xhrConnection = super.createConnection(request);
     xhrConnection.response = xhrConnection.response.catch((error: Response) => {
       if (error.status === 401 || error.status === 403) {

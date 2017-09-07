@@ -28,7 +28,9 @@ export class LoginService {
       .post(this.url + 'login', JSON.stringify(usuario), options)
       .map((res) => {
         var token = res.headers.get('x-access-token');
-        if (token) {
+        
+        if (token || res.json()) {
+          
           this._loggedIn.next(true);
           localStorage.setItem('token', token);
           
