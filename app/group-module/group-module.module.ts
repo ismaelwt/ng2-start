@@ -7,6 +7,7 @@ import { GroupModuleComponent } from './group-module.component';
 import { GroupModuleShowComponent } from './show/group-module-show.component';
 import { GroupModuleService } from './group-module.service';
 import { groupModuleRouting } from './group-module.routing';
+import { ModalComponent } from '../component/modal.component/modal.component';
 
 
 
@@ -20,7 +21,8 @@ import { groupModuleRouting } from './group-module.routing';
     ],
     declarations: [
       GroupModuleComponent,
-      GroupModuleShowComponent
+      GroupModuleShowComponent,
+      ModalComponent
     ],
   
     providers: [
@@ -28,10 +30,10 @@ import { groupModuleRouting } from './group-module.routing';
     ]
     
   })
-  export class GroupModuleModule {
+  export class GrupoDeModulos {
     static forRoot() {
       return {
-        ngModule: GroupModuleModule,
+        ngModule: GrupoDeModulos,
         providers: [ GroupModuleService ]
       }
   }

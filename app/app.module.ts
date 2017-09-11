@@ -18,8 +18,8 @@ import { LoginService } from './login/login.service';
 import { LoggedInGuard } from './helper/LoggedInGuard';
 
 import { CompanyModule } from './company/company.module';
-import { GroupModuleModule } from './group-module/group-module.module';
-
+import { GrupoDeModulos } from './group-module/group-module.module';
+import { mModuleCore } from './module/module.core';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise'
@@ -35,7 +35,8 @@ import 'rxjs/add/observable/throw';
     appRouting,
     HttpModule,
     CompanyModule,
-    GroupModuleModule
+    GrupoDeModulos,
+    mModuleCore
   ],
   declarations: [
     AppComponent,

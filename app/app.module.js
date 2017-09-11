@@ -27,7 +27,7 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/toPromise");
 require("rxjs/add/operator/catch");
 require("rxjs/add/observable/throw");
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([

@@ -24,8 +24,10 @@
                                 <th>Index</th>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let company of companies; let i = index;">
-                                    <td [ngClass]="{'setSelected': selectedCompany && selectedCompany.id === company.id}" (click)="setSelected(company)" >{{company.name}}</td>
+                                <tr *ngFor="let company of companies; let i = index;"  [hidden]="company._isRoot">
+                                    <td [ngClass]="{'setSelected': selectedCompany && selectedCompany.id === company.id}" 
+                                        (click)="setSelected(company)">{{company.name}}
+                                    </td>
                                     <td>{{i}}</td>
                                 </tr>
                             </tbody>

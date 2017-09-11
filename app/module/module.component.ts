@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
-import { GroupModule } from '../shared/models/group-module';
-import { GroupModuleService } from './group-module.service';
+import { Module } from '../shared/models/module';
+import { ModuleService } from './module.service';
 
 
 @Component({
-    selector: 'group-module-page',
-    templateUrl: './app/group-module/group-module.component.html',
+    selector: 'module-page',
+    templateUrl: './app/module/module.component.html',
     styles: [`
     .cls1 {
       border: solid 1px;
@@ -20,13 +20,13 @@ import { GroupModuleService } from './group-module.service';
     .setSelected {background-color: rgba(67, 187, 164, 0.5);}
   `]
 })
-export class GroupModuleComponent implements OnInit {
+export class ModuleComponent implements OnInit {
 
     location: Location;
-    groupModules: GroupModule[];
-    selectedGroupModule: GroupModule;
+    _modules: Module[];
+    selectedModule: Module;
 
-    constructor(private plocation: Location, private service: GroupModuleService,
+    constructor(private plocation: Location, private service: ModuleService,
         private route: ActivatedRoute,
         private router: Router) {
         this.location = plocation;
@@ -37,33 +37,33 @@ export class GroupModuleComponent implements OnInit {
     }
 
     addCompany() {
-        this.router.navigate(['group-module/add']);
+        this.router.navigate(['module/add']);
     }
 
     goBack() {
         this.location.back();
     }
 
-    setSelected(company) {
-        this.selectedGroupModule = company;
+    setSelected(pModule) {
+        this.selectedModule = pModule;
     }
 
     getAll() {
         this.service.getAll()
             .subscribe(
-            groupModules => this.groupModules = groupModules,
+            _resModules => this._modules = _resModules,
             err => {
                 console.log(err);
             });
     }
 
-    editGroupModule() {
-        this.router.navigate(['group-module/' + this.selectedGroupModule.id]);
+    editModule() {
+        this.router.navigate(['module/' + this.selectedModule.id]);
     }
 
-    removeGroupModule() {
-        if (this.selectedGroupModule) {
-            this.service.deleteById(this.selectedGroupModule.id).subscribe(res => {
+    removeModule() {
+        if (this.selectedModule) {
+            this.service.deleteById(this.selectedModule.id).subscribe(res => {
                 this.getAll();
             });
         }

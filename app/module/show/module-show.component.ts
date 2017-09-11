@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import { GroupModule } from '../../shared/models/group-module';
 import { Module } from '../../shared/models/module';
-import { GroupModuleService } from '../group-module.service';
+import { ModuleService } from '../module.service';
 import { ModalComponent } from '../../component/modal.component/modal.component' 
 
 
@@ -21,32 +21,32 @@ import { ModalComponent } from '../../component/modal.component/modal.component'
     }
   `]
 })
-export class GroupModuleShowComponent implements OnInit {
-  groupModule: GroupModule;
+export class ModuleShowComponent implements OnInit {
+  mModule: Module;
   
   @ViewChild('modal')
   modal: ModalComponent;
 
 
-  constructor(private service: GroupModuleService, private router: Router, private location: Location, private activeRoute: ActivatedRoute) {
+  constructor(private service: ModuleService, private router: Router, private location: Location, private activeRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
 
     this.activeRoute.params.subscribe(params => {
-      let groupModuleId: string = params['id'];
+      let moduleId: string = params['id'];
 
-      if (groupModuleId) {
-        this.service.findById(groupModuleId).subscribe(groupModule => this.groupModule = groupModule);
+      if (moduleId) {
+        this.service.findById(moduleId).subscribe(res => this.mModule = res);
       }else {
-        this.groupModule = new GroupModule();
+        this.mModule = new Module();
       }
       
     });
   }
 
   save(groupModule: GroupModule) {
-    this.service.save(groupModule).subscribe(res => this.router.navigate(['group-module']));
+    this.service.save(groupModule).subscribe(res => this.router.navigate(['module']));
   }
 
   goBack() {

@@ -7,6 +7,7 @@ import { LoggedInGuard } from './helper/LoggedInGuard';
 
 const appRoutes: Routes = [
     { path : '', component: LoginComponent },
+    { path : '', component: LoginComponent },
     { path : 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
     { path : 'register', component: RegisterComponent },
     { path: '**', redirectTo: '/' }

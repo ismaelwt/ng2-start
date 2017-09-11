@@ -11,16 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
-var RegisterService = (function () {
+var Observable_1 = require("rxjs/Observable");
+var RegisterService = /** @class */ (function () {
     function RegisterService(http) {
         this.http = http;
         this.registerUrl = 'http://localhost:8000/usuario';
-        this.head = new http_1.Headers({
-            'Content-Type': 'application/json'
-        });
     }
     RegisterService.prototype.save = function (data) {
-        return this.http.post(this.registerUrl, JSON.stringify(data), { headers: this.head }).map(function (res) { return res.json(); }).subscribe(function (data) { console.log(data); }, function (err) { return console.log(err); }, function () { return console.log('Fetching complete for Server Metrics'); });
+        return this.http.post(this.registerUrl, JSON.stringify(data))
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };
     RegisterService = __decorate([
         core_1.Injectable(),

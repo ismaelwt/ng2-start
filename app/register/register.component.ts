@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { Location } from '@angular/common';
 import { Http } from '@angular/http';
 import { User } from '../shared/models/user';
 import { RegisterService } from './register.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,24 +20,62 @@ import { RegisterService } from './register.service';
 })
 export class RegisterComponent implements OnInit {
     
-    location: Location;
     user: User;
+    message:string;
+    errorMessage = false;
 
-    constructor(private service: RegisterService, private plocation:Location){
-        this.location = plocation;
-    }
+    constructor(private service: RegisterService, private router:Router){}
 
     ngOnInit(){
          this.user = new User();
     }
 
     saveNewUser() {
-        this.service.save(this.user);
+
+        if(this.validationError()) {
+            this.errorMessage = true;
+            return;
+        }else {
+            this.service.save(this.user).subscribe(user => {
+                if(user){
+    
+                    this.message = `Usuário ${user.email} criado com sucesso.`
+    
+                    //this.router.navigateByUrl('');
+                }
+            });
+        }
     }
 
+    close(){
+        this.errorMessage = false; 
+      }
+
+
+    validationError(){
+        let _error = false;
+
+        if (!this.user.email) {
+            this.message = 'Preencha corretamente o campo email.';
+            _error = true;
+        }
+        if (!this.user.password && !_error) {
+            this.message = 'Preencha corretamente o campo senha'
+            _error = true;
+        }else {
+            this.message += ', Senha';
+        }
+        if (!this.user.name && !_error) {
+            this.message = 'Preencha corretamente o campo Nome'
+            _error = true;
+        }else {
+            this.message += ', Nome.';
+        }
+        return _error;
+    }
 
     goBack() {
-        this.location.back();
+        this.router.navigateByUrl('')
     }
 
 }

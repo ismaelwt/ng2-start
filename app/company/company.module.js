@@ -14,7 +14,7 @@ var company_component_1 = require("./company.component");
 var company_show_component_1 = require("./show/company-show.component");
 var company_service_1 = require("./company.service");
 var company_routing_1 = require("./company.routing");
-var CompanyModule = (function () {
+var CompanyModule = /** @class */ (function () {
     function CompanyModule() {
     }
     CompanyModule_1 = CompanyModule;

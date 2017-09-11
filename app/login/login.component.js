@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var user_1 = require("../shared/models/user");
 var login_service_1 = require("./login.service");
-var LoginComponent = (function () {
+var LoginComponent = /** @class */ (function () {
     function LoginComponent(service) {
         this.service = service;
         this.errorMessage = undefined;
@@ -22,7 +22,10 @@ var LoginComponent = (function () {
     };
     LoginComponent.prototype.logar = function () {
         var _this = this;
-        this.service.login(this.user).subscribe(function (res) { return _this.errorMessage = res; });
+        this.service.login(this.user).subscribe(function (res) {
+            console.log('dsadsadsa');
+            _this.errorMessage = res;
+        });
     };
     LoginComponent.prototype.close = function () {
         this.errorMessage = undefined;

@@ -12,18 +12,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
-var CompanyService = (function () {
+var CompanyService = /** @class */ (function () {
     function CompanyService(http) {
         this.http = http;
         this.registerUrl = 'http://localhost:8000/empresa/';
-        this.head = new http_1.Headers({
-            'Content-Type': 'application/json'
-        });
     }
     CompanyService.prototype.ngOnInit = function () {
     };
     CompanyService.prototype.save = function (data) {
-        return this.http.post(this.registerUrl, JSON.stringify(data), { headers: this.head })
+        return this.http.post(this.registerUrl, JSON.stringify(data))
             .map(function (res) { return res.json(); })
             .catch(function (error) { return Observable_1.Observable.throw(error.json().error || 'Server error'); });
     };

@@ -14,7 +14,7 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var group_module_1 = require("../../shared/models/group-module");
 var group_module_service_1 = require("../group-module.service");
-var GroupModuleShowComponent = (function () {
+var GroupModuleShowComponent = /** @class */ (function () {
     function GroupModuleShowComponent(service, router, location, activeRoute) {
         this.service = service;
         this.router = router;
@@ -24,16 +24,18 @@ var GroupModuleShowComponent = (function () {
     GroupModuleShowComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activeRoute.params.subscribe(function (params) {
-            var companyId = params['id'];
-            if (companyId) {
-                _this.service.findById(companyId).subscribe(function (groupModule) { return _this.groupModule = groupModule; });
+            var groupModuleId = params['id'];
+            if (groupModuleId) {
+                _this.service.findById(groupModuleId).subscribe(function (groupModule) { return _this.groupModule = groupModule; });
+            }
+            else {
+                _this.groupModule = new group_module_1.GroupModule();
             }
         });
-        this.groupModule = new group_module_1.GroupModule();
     };
     GroupModuleShowComponent.prototype.save = function (groupModule) {
         var _this = this;
-        this.service.save(groupModule).subscribe(function (res) { return _this.router.navigate(['company']); });
+        this.service.save(groupModule).subscribe(function (res) { return _this.router.navigate(['group-module']); });
     };
     GroupModuleShowComponent.prototype.goBack = function () {
         this.location.back();

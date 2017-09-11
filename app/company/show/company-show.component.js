@@ -14,7 +14,7 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var company_1 = require("../../shared/models/company");
 var company_service_1 = require("../company.service");
-var CompanyShowComponent = (function () {
+var CompanyShowComponent = /** @class */ (function () {
     function CompanyShowComponent(service, router, location, activeRoute) {
         this.service = service;
         this.router = router;

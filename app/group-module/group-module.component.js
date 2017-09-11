@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var group_module_service_1 = require("./group-module.service");
-var GroupModuleComponent = (function () {
+var GroupModuleComponent = /** @class */ (function () {
     function GroupModuleComponent(plocation, service, route, router) {
         this.plocation = plocation;
         this.service = service;

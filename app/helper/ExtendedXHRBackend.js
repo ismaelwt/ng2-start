@@ -22,10 +22,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
-var ExtendedXHRBackend = (function (_super) {
+var ExtendedXHRBackend = /** @class */ (function (_super) {
     __extends(ExtendedXHRBackend, _super);
     function ExtendedXHRBackend(browserXhr, baseResponseOptions, xsrfStrategy) {
-        return _super.call(this, browserXhr, baseResponseOptions, xsrfStrategy) || this;
+        var _this = _super.call(this, browserXhr, baseResponseOptions, xsrfStrategy) || this;
+        _this.baseResponseOptions = baseResponseOptions;
+        return _this;
     }
     ExtendedXHRBackend.prototype.createConnection = function (request) {
         var token = localStorage.getItem('token');
@@ -43,7 +45,8 @@ var ExtendedXHRBackend = (function (_super) {
     };
     ExtendedXHRBackend = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.BrowserXhr, http_1.ResponseOptions, http_1.XSRFStrategy])
+        __metadata("design:paramtypes", [http_1.BrowserXhr, http_1.ResponseOptions,
+            http_1.XSRFStrategy])
     ], ExtendedXHRBackend);
     return ExtendedXHRBackend;
 }(http_1.XHRBackend));

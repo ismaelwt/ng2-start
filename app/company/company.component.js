@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var company_service_1 = require("./company.service");
-var CompanyComponent = (function () {
+var CompanyComponent = /** @class */ (function () {
     function CompanyComponent(plocation, service, route, router) {
         this.plocation = plocation;
         this.service = service;

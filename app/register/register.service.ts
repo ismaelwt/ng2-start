@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class RegisterService {
@@ -8,22 +9,9 @@ export class RegisterService {
 
     constructor(private http: Http) { }
 
-    head = new Headers({
-        'Content-Type': 'application/json'
-    });
-
-
     save(data: any) {
-        
-        return this.http.post(
-          this.registerUrl,
-          JSON.stringify(data),
-          {headers: this.head}
-        ).map (res => res.json()).subscribe(
-            data => {console.log(data);},
-            err => console.log(err),
-            () => console.log('Fetching complete for Server Metrics')
-        );
-      }
-
+        return this.http.post(this.registerUrl,JSON.stringify(data))
+            .map(res => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }

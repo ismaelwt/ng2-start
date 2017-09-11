@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit{
 
   logar () {
     this.service.login(this.user).subscribe(res => {
-      console.log('dsadsadsa'); 
       this.errorMessage = res;
     });
   }

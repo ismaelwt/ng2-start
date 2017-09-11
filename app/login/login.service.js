@@ -11,23 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
+var rxjs_1 = require("rxjs");
 var BehaviorSubject_1 = require("rxjs/BehaviorSubject");
 var router_1 = require("@angular/router");
-var LoginService = (function () {
-    function LoginService(http, router) {
+var LoginService = /** @class */ (function () {
+    function LoginService(http, router, opt) {
         this.http = http;
         this.router = router;
+        this.opt = opt;
         this.url = 'http://localhost:8000/auth/';
         this._loggedIn = new BehaviorSubject_1.BehaviorSubject(false);
         this.loggedIn = this._loggedIn.asObservable();
     }
     LoginService.prototype.login = function (usuario) {
         var _this = this;
+        var options = new http_1.RequestOptions();
+        options.withCredentials = true;
         return this.http
-            .post(this.url + 'login', JSON.stringify(usuario))
+            .post(this.url + 'login', JSON.stringify(usuario), options)
             .map(function (res) {
             var token = res.headers.get('x-access-token');
-            if (token) {
+            if (token || res.json()) {
                 _this._loggedIn.next(true);
                 localStorage.setItem('token', token);
                 if (res.json()) {
@@ -39,7 +43,7 @@ var LoginService = (function () {
             else {
                 return res.json();
             }
-        });
+        }).catch(function (error) { return rxjs_1.Observable.throw(error.json() || 'Server error'); });
     };
     LoginService.prototype.logout = function () {
         localStorage.clear();
@@ -58,7 +62,7 @@ var LoginService = (function () {
     };
     LoginService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [http_1.Http, router_1.Router])
+        __metadata("design:paramtypes", [http_1.Http, router_1.Router, http_1.RequestOptions])
     ], LoginService);
     return LoginService;
 }());

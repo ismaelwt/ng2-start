@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var GroupModule = (function () {
+var GroupModule = /** @class */ (function () {
     function GroupModule() {
     }
     return GroupModule;

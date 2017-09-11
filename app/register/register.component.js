@@ -10,23 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var common_1 = require("@angular/common");
 var user_1 = require("../shared/models/user");
 var register_service_1 = require("./register.service");
-var RegisterComponent = (function () {
-    function RegisterComponent(service, plocation) {
+var router_1 = require("@angular/router");
+var RegisterComponent = /** @class */ (function () {
+    function RegisterComponent(service, router) {
         this.service = service;
-        this.plocation = plocation;
-        this.location = plocation;
+        this.router = router;
     }
     RegisterComponent.prototype.ngOnInit = function () {
         this.user = new user_1.User();
     };
     RegisterComponent.prototype.saveNewUser = function () {
-        this.service.save(this.user);
+        this.service.save(this.user).subscribe(function (res) {
+            if (res.jons()) {
+                console.log(res.json());
+            }
+        });
     };
     RegisterComponent.prototype.goBack = function () {
-        this.location.back();
+        this.router.navigateByUrl('');
     };
     RegisterComponent = __decorate([
         core_1.Component({
@@ -34,7 +37,7 @@ var RegisterComponent = (function () {
             templateUrl: './app/register/register.component.html',
             styles: ["\n    .cls1 {\n      border: solid 1px;\n      padding: 15px !important;\n      border-radius: 25px;\n      width: 50%;\n      height: 50%;\n    }\n  "]
         }),
-        __metadata("design:paramtypes", [register_service_1.RegisterService, common_1.Location])
+        __metadata("design:paramtypes", [register_service_1.RegisterService, router_1.Router])
     ], RegisterComponent);
     return RegisterComponent;
 }());

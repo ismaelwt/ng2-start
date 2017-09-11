@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
-var GroupModuleService = (function () {
+var GroupModuleService = /** @class */ (function () {
     function GroupModuleService(http) {
         this.http = http;
         this.registerUrl = 'http://localhost:8000/group-module/';

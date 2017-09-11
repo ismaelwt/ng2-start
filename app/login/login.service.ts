@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   Http, RequestOptions
 } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Router } from '@angular/router';
 import { User } from '../shared/models/user';
@@ -21,15 +21,12 @@ export class LoginService {
 
   login(usuario: User) {
 
-    let options = new RequestOptions();
-    options.withCredentials = true;
-
     return this.http
-      .post(this.url + 'login', JSON.stringify(usuario), options)
+      .post(this.url + 'login', JSON.stringify(usuario))
       .map((res) => {
         var token = res.headers.get('x-access-token');
         
-        if (token || res.json()) {
+        if (token) {
           
           this._loggedIn.next(true);
           localStorage.setItem('token', token);

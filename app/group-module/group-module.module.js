@@ -14,7 +14,7 @@ var group_module_component_1 = require("./group-module.component");
 var group_module_show_component_1 = require("./show/group-module-show.component");
 var group_module_service_1 = require("./group-module.service");
 var group_module_routing_1 = require("./group-module.routing");
-var GroupModuleModule = (function () {
+var GroupModuleModule = /** @class */ (function () {
     function GroupModuleModule() {
     }
     GroupModuleModule_1 = GroupModuleModule;
